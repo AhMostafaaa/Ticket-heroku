@@ -1,0 +1,316 @@
+<tabset #staticTabs type="pills">
+  <tab heading="Basic Info">
+    <form [formGroup]="addNewEvent" #newEvent="ngForm" (ngSubmit)="addEvent(newEvent)">
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>Event Name</mat-label>
+            <input type="text" matInput formControlName="eventName">
+            <mat-error>Event Name is required</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-12 col-md-6">
+          <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>Expiry Date</mat-label>
+            <input type="datetime-local" matInput>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-12 col-md-6">
+          <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>Event Description</mat-label>
+            <input type="text" matInput formControlName="eventDesc">
+            <mat-error>Event description is required</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-12 col-md-6">
+          <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>After Payment Message</mat-label>
+            <input type="text" matInput>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-12 col-md-6">
+          <label class="main-label">Do you want to show this Event on your shop?</label> <br>
+          <mat-radio-group aria-label="Select an option" class="mt-4">
+            <mat-radio-button value="1">Yes</mat-radio-button>
+            <mat-radio-button value="2">No</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div class="col-12 col-md-6">
+          <label class="main-label mb-3">Cash Expiry Duration</label>
+          <select class="form-control" aria-label="Default select example">
+            <option selected>3 Hours</option>
+            <option value="1">4 Hours</option>
+            <option value="2">5 Hours</option>
+            <option value="3">6 Hours</option>
+          </select>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-12 col-md-6">
+          <label class="main-label">Do you want the fees to be on the buyer?</label> <br>
+          <mat-radio-group aria-label="Select an option" class="mt-4">
+            <mat-radio-button value="1">Yes</mat-radio-button>
+            <mat-radio-button value="2">No</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div class="col-12 col-md-6">
+          <label class="main-label mb-3">Viewing Currency</label>
+          <select class="form-control" aria-label="Default select example">
+            <option selected>EGP</option>
+            <option value="1">USD</option>
+          </select>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-12 col-md-6">
+          <label class="main-label mb-4">Payment options</label> <br>
+          <section class="example-section">
+            <mat-checkbox class="example-margin">Mezza</mat-checkbox>
+            <mat-checkbox class="example-margin">Mobile Wallet</mat-checkbox>
+            <mat-checkbox class="example-margin">Cash Through Aman</mat-checkbox>
+          </section>
+        </div>
+        <div class="col-12 col-md-6">
+          <label class="main-label">Do you want to apply Taxes for this Event?</label> <br>
+          <mat-radio-group aria-label="Select an option" class="mt-2">
+            <mat-radio-button value="1">Yes</mat-radio-button>
+            <mat-radio-button value="2">No</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div class="mt-2 text-right">
+        <button class="main-btn" type="submit" (click)='disableEvent()'>Save and continue</button>
+      </div>
+    </form>
+  </tab>
+  <tab heading="Extra Info" [disabled]="true">
+    <form [formGroup]="extraInfo" #newExtra="ngForm" (ngSubmit)="addExtra(newExtra)">
+      <div class="row mt-3">
+        <div class="col-12 col-md-6">
+          <label class="main-label mb-2">Event Image </label>
+          <div class="upload-file">
+            <input id="inputUpload" type="file" accept="image/gif,image/jpeg,image/jpg" />
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <label class="main-label mb-2">Category </label>
+          <ng-select [items]="products" bindLabel="name" required formControlName="selectOption"
+            placeholder="Search For Category">
+          </ng-select>
+          <mat-error *ngIf="showError">Required</mat-error>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-12">
+          <label class="main-label mb-2">Event Duration </label>
+          <mat-form-field appearance="fill">
+            <mat-label>Event Duration</mat-label>
+            <mat-date-range-input [rangePicker]="picker">
+              <input matStartDate formControlName="startDate" placeholder="Start date">
+              <input matEndDate formControlName="endDate" placeholder="End date">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+            <mat-error>Event Date is required</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-12 col-md-5">
+          <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>Event Address</mat-label>
+            <input type="text" matInput>
+          </mat-form-field>
+        </div>
+        <div class="col-12 col-md-5">
+          <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>Event Location</mat-label>
+            <input type="text" matInput>
+          </mat-form-field>
+        </div>
+        <div class="col-12 col-md-2">
+          <button type="submit" class="main-btn location-btn mt-2">Set Location</button>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-12">
+          <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>Facebook Link</mat-label>
+            <input type="text" matInput>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-12 col-md-6">
+          <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>Delivery terms</mat-label>
+            <input type="text" matInput>
+          </mat-form-field>
+        </div>
+        <div class="col-12 col-md-6">
+          <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>Return terms</mat-label>
+            <input type="text" matInput>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="mt-2 text-right">
+        <button type="submit" class="main-btn" (click)='disableInfo()'>Save and continue</button>
+      </div>
+    </form>
+  </tab>
+  <tab heading="Add Ticket" [disabled]="true">
+    <div class="border-bottom pb-2 pt-3" *ngFor="let container of containers ; let i = index">
+      <form [formGroup]="AddNewTicket" #newTicket="ngForm" (ngSubmit)="addTicketdata(newTicket)">
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <mat-form-field appearance="outline" class="example-full-width">
+              <mat-label>Ticket Name</mat-label>
+              <input type="text" matInput formControlName="ticketName">
+              <mat-error>Ticket Name is required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-md-6">
+            <mat-form-field appearance="outline" class="example-full-width">
+              <mat-label>Price</mat-label>
+              <input type="number" matInput formControlName="price">
+              <mat-error>Price Name is required</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-12 col-md-3">
+            <mat-form-field appearance="outline" class="example-full-width">
+              <mat-label>Total Quantity</mat-label>
+              <input type="number" matInput formControlName="totalQuantity">
+              <mat-error>must be a number more than paid and pending
+                Quantity.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-md-3">
+            <mat-form-field appearance="outline" class="example-full-width">
+              <mat-label>Pending Quantity</mat-label>
+              <input type="number" matInput readonly>
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-md-3">
+            <mat-form-field appearance="outline" class="example-full-width">
+              <mat-label>Paid Quantity</mat-label>
+              <input type="number" matInput readonly>
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-md-3">
+            <mat-form-field appearance="outline" class="example-full-width">
+              <mat-label>Max Quantity Per Sale</mat-label>
+              <input type="number" matInput>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-12 col-md-6">
+            <mat-form-field appearance="outline" class="example-full-width">
+              <mat-label>Ticket Description</mat-label>
+              <input type="text" matInput>
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-md-6">
+            <mat-form-field appearance="outline" class="example-full-width">
+              <mat-label>Ticket Expiry</mat-label>
+              <input type="text" matInput>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-12 col-md-3">
+            <div class="">
+              <button class="main-btn delete-btn" (click)="deleteTicket(i)">delete</button>
+            </div>
+          </div>
+          <div class="col-12 col-md-3"></div>
+          <div class="col-12 col-md-3"></div>
+          <div class="col-12 col-md-3">
+            <div class="d-flex justify-content-end">
+              <button type="submit" class="main-btn" (click)='disableTicket()'>Save and continue</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="mt-3 pb-3 border-bottom">
+      <button class="main-btn add-btn" (click)="addTicket()">Add One</button>
+    </div>
+    <div class="row mt-2">
+      <div class="col-12 col-md-6">
+        <label class="main-label">Do you want to Add extra Buyer info fields to your product?</label> <br>
+        <mat-radio-group aria-label="Select an option" class="mt-4">
+          <mat-radio-button value="1">Yes</mat-radio-button>
+          <mat-radio-button value="2">No</mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
+  </tab>
+  <tab heading="Buyers Information" [disabled]="true">
+    <section>
+      <div class="event-details p-3 mb-3">
+        <div class="row">
+          <div class="col-6" *ngFor="let event of events">
+            <div class="">
+              <p class="event-name mb-0">Event Name : </p>
+              <h3 class="event-value">{{event.name}}</h3>
+            </div>
+            <div class="">
+              <p class="event-desc mb-0">Event Description : </p>
+              <h3 class="desc-value">{{event.description}}</h3>
+            </div>
+          </div>
+          <div class="col-6" *ngFor="let eventDate of dates">
+            <div class="">
+              <p class="start-date mb-0">Start Date : </p>
+              <h3 class="start-value">{{eventDate.startDate | date:"EEEE, MMMM d, y"}}</h3>
+            </div>
+            <div class="">
+              <p class="end-date mb-0">End Date : </p>
+              <h3 class="end-value">{{eventDate.endDate | date:"EEEE, MMMM d, y"}}</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-12">
+          <div class="informations border table table-responsive">
+            <table class="w-100">
+              <thead>
+                <tr class="">
+                  <th class="border-0">
+                    <h2 class="mb-0">Ticket Infromation</h2>
+                  </th>
+                </tr>
+              </thead>
+              <thead>
+                <tr class="border-bottom table-light">
+                  <th>Ticket Name</th>
+                  <th>Ticket Price</th>
+                  <th>Quantity</th>
+                  <th>Total Quantity</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let ticket of tickets" class="border-bottom table-light">
+                  <td>{{ticket.ticketName}}</td>
+                  <td>{{ticket.ticketPrice}}</td>
+                  <td><input class="form-control" type="number"></td>
+                  <td>{{ticket.ticketQuantity}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </tab>
+</tabset>

@@ -1,0 +1,156 @@
+.nav-pills {
+
+    justify-content: center;
+    font-size: 20px;
+    .nav-item {
+        margin-right: 20px;
+    }
+    .nav-item a {
+        color: $font-color;
+    }
+
+    .nav-link.active {
+        background-color: $primary-color;
+        color: white !important;
+        ;
+    }
+  }
+.tab-pane {
+    margin-top: 2.5rem;
+}
+.mat-form-field {
+    width: 100%;
+}
+.mat-form-field-appearance-outline {
+    .mat-form-field-outline {
+        opacity: 1 !important;
+        color: $font-color;
+    }
+    .mat-form-field-outline:focus {
+        color: orange !important;
+    }
+} 
+.mat-form-field-label{
+    color: $font-color;
+    font-size: .9rem !important;
+}
+.mat-radio-button{
+    margin: 15px 0px 0px 10px;
+    .mat-radio-outer-circle ,.mat-radio-outer-circle{
+        border-color: $primary-color;
+    }
+    .mat-radio-label-content {
+        font-size: 1rem;
+    }
+}
+.mat-radio-button.mat-accent .mat-radio-inner-circle, .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
+    background-color: $primary-color;
+}
+.main-label {
+    font-size: $main-label;
+}
+.form-control {
+    height: 40px !important;
+    background-color: transparent;
+    border-radius: 5px;
+    border-color: $font-color;
+}
+.form-control:focus {
+    background-color: transparent;
+}
+.mat-checkbox {
+    margin-left:10px;
+    .mat-checkbox-frame {
+        border: 2px solid $primary-color
+      }
+}
+.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color: $primary-color;
+}
+.main-btn {
+    background-color: $primary-color;
+    color: $white-color;
+    padding: 11px 22px;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+.delete-btn {
+    background-color: #dc3545;
+}
+.main-btn:hover {
+    opacity: .8;
+    transition: all ease-in-out .2s;
+}
+.location-btn {
+    padding: 11px 30px 11px 30px;
+}
+.mat-button, .mat-icon-button, .mat-stroked-button {
+    color: $primary-color;
+}
+.mat-form-field-appearance-fill .mat-form-field-flex {
+    border-radius: 4px !important;
+    border: 1px solid $font-color;
+}
+.add-btn {
+    padding: 15px 60px;
+    font-size: 1.2rem;
+}
+.mat-form-field-appearance-outline.mat-focused {
+    .mat-form-field-outline-thick,.mat-form-field-label{
+        color: $primary-color !important;
+    }
+}  
+.ng-select {
+    .ng-select-container {
+        height: 45px !important;
+        background-color: transparent;
+        border: 1px solid $font-color;
+        border-radius: 5px;
+} 
+}
+.ng-dropdown-panel {
+    .ng-dropdown-panel-items {
+        .ng-option.ng-option-marked {
+             background-color: $primary-color !important;
+        }
+    }
+} 
+.mat-form-field-underline{
+    display: none !important;
+}
+.upload-file {
+    border: 1px solid $font-color;
+    padding: 9px;
+    border-radius: 5px;
+}
+.informations {
+    box-shadow:  0px 2px 18px 0px #ddd;
+    thead {
+        th {
+            font-size: 1.2rem;
+            font-weight: normal;
+        }
+    }
+    .form-control {
+        height: 28px !important;
+        width: 40%;
+    }
+}
+.event-title {
+    background-color: #f4f3ef;
+}
+.event-details{
+    background-color: $primary-color;
+    box-shadow:  0px 2px 7px rgba(0, 0, 0, .4);;
+    .event-name,.event-desc,.start-date,.end-date{
+        font-size: 16px;
+        color: $white-color;
+    }
+    .event-value,.desc-value,.start-value,.end-value{
+        font-size: 19px;
+        color: $white-color;
+    }
+
+}
